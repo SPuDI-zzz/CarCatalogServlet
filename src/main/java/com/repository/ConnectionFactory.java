@@ -17,7 +17,7 @@ public class ConnectionFactory {
         try {
             InitialContext ic = new InitialContext();
             DataSource dataSource = (DataSource) ic.lookup(JAVA_COMP_ENV_JDBC_POSTGRES);
-            if (dataSource == null) {
+            if (isDataSourceFound(dataSource)) {
                 throw new RuntimeException("Data source not found");
             }
             return dataSource.getConnection();
@@ -25,5 +25,9 @@ public class ConnectionFactory {
             LOGGER.log(Level.WARNING, "Error while getting connection", e);
             throw new RuntimeException(e);
         }
+    }
+
+    private static boolean isDataSourceFound(DataSource dataSource) {
+        return dataSource == null;
     }
 }

@@ -76,10 +76,10 @@ public class ProfileRepository {
     }
 
     private static Profile mapToProfile(ResultSet resultSet) throws SQLException {
-        return new Profile(
-                resultSet.getLong("id"),
-                resultSet.getString("login"),
-                resultSet.getString("password")
-        );
+        return Profile.builder()
+                .id(resultSet.getLong("id"))
+                .login(resultSet.getString("login"))
+                .password(resultSet.getString("password"))
+                .build();
     }
 }

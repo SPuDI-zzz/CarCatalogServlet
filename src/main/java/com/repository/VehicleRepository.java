@@ -22,7 +22,8 @@ public class VehicleRepository {
 
     public void insert(Vehicle vehicle) {
         try (Connection connection = ConnectionFactory.getConnection()) {
-            PreparedStatement statement = getStatementFromVehicle(vehicle, connection, INSERT_QUERY);
+            PreparedStatement statement = connection.prepareStatement(INSERT_QUERY);
+            setStatementFromVehicle(statement, vehicle);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -62,7 +63,8 @@ public class VehicleRepository {
 
     public void update(Vehicle vehicle) {
         try (Connection connection = ConnectionFactory.getConnection()) {
-            PreparedStatement statement = getStatementFromVehicle(vehicle, connection, UPDATE_QUERY);
+            PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY);
+            setStatementFromVehicle(statement, vehicle);
             statement.setLong(7, vehicle.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -80,26 +82,24 @@ public class VehicleRepository {
         }
     }
 
-    private PreparedStatement getStatementFromVehicle(Vehicle vehicle, Connection connection, String stringQuery) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(stringQuery);
+    private void setStatementFromVehicle(PreparedStatement statement, Vehicle vehicle) throws SQLException {
         statement.setString(1, vehicle.getMark());
         statement.setString(2, vehicle.getModel());
         statement.setString(3, vehicle.getType());
         statement.setInt(4, vehicle.getMileage());
         statement.setInt(5, vehicle.getPrice());
         statement.setLong(6, vehicle.getIdProfile());
-        return statement;
     }
 
-    private static Vehicle getVehicleFromResultSet(ResultSet resultSet) throws SQLException {
-        Vehicle vehicle = new Vehicle();
-        vehicle.setId(resultSet.getLong("id"));
-        vehicle.setMark(resultSet.getString("mark"));
-        vehicle.setModel(resultSet.getString("model"));
-        vehicle.setType(resultSet.getString("type"));
-        vehicle.setMileage(resultSet.getInt("mileage"));
-        vehicle.setPrice(resultSet.getInt("price"));
-        vehicle.setIdProfile(resultSet.getLong("id_profile"));
-        return vehicle;
+    private Vehicle getVehicleFromResultSet(ResultSet resultSet) throws SQLException {
+        return Vehicle.builder()
+                .id(resultSet.getLong("id"))
+                .mark(resultSet.getString("mark"))
+                .model(resultSet.getString("model"))
+                .type(resultSet.getString("type"))
+                .mileage(resultSet.getInt("mileage"))
+                .price(resultSet.getInt("price"))
+                .idProfile(resultSet.getLong("id_profile"))
+                .build();
     }
 }
