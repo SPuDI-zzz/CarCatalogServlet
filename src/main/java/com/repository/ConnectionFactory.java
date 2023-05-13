@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
 
     private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
-    private static final String JAVA_COMP_ENV_JDBC_POSTGRES = "java:/comp/env/jdbc/postgresCar";
+    private static final String JAVA_COMP_ENV_JDBC_POSTGRES = "java:/comp/env/jdbc/postgresVehicles";
 
     public static Connection getConnection() {
         try {
