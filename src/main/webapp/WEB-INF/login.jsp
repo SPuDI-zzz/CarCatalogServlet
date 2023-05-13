@@ -3,9 +3,10 @@
 <html>
 <head>
     <title>Login page</title>
+    <link rel="stylesheet" href="<c:url value="/styles/form.css"/>">
 </head>
 <body>
-<div>
+<div class="flex-container">
     <h1>LOGIN</h1>
     <c:if test="${not empty error}">
         <div class="error">${error}</div>

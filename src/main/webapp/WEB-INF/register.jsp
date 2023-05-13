@@ -3,9 +3,10 @@
 <html>
 <head>
     <title>Register page</title>
+    <link rel="stylesheet" href="<c:url value="/styles/form.css"/>">
 </head>
 <body>
-<div>
+<div class="flex-container">
     <h1>REGISTER</h1>
     <c:if test="${not empty error}">
         <div>${error}</div>

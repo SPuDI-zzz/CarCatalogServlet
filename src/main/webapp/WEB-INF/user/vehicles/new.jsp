@@ -3,9 +3,10 @@
 <html>
 <head>
     <title>New Vehicle</title>
+    <link rel="stylesheet" href="<c:url value="/styles/form.css"/>">
 </head>
 <body>
-<div>
+<div class="flex-container">
     <h1>NEW VEHICLE</h1>
     <form action="<c:url value="/user/vehicles/new"/>" method="post">
         <label>Mark:<br>

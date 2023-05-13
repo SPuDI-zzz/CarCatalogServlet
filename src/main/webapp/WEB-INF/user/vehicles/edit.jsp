@@ -4,9 +4,10 @@
 <html>
 <head>
     <title>Edit vehicle</title>
+    <link rel="stylesheet" href="<c:url value="/styles/form.css"/>">
 </head>
 <body>
-<div>
+<div class="flex-container">
     <h1>EDIT VEHICLE</h1>
     <form action="<c:url value="/user/vehicles/edit"/>" method="post">
         <input type="hidden" name="idVehicle" value="<c:out value="${vehicle.getId()}"/>"><br>

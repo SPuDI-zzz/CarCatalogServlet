@@ -3,16 +3,15 @@
 <html>
 <head>
     <title>Vehicle list</title>
+    <link rel="stylesheet" href="<c:url value="/styles/vehicles.css"/>">
 </head>
 <body>
-<div>
+<div class="logout">
     <a href="<c:url value="/user/logout"/>">Logout</a>
 </div>
 <h1>Your Vehicle list</h1>
-<div>
-    <button>
-        <a href="vehicles/new">Add new vehicle</a>
-    </button>
+<div class="btn-container">
+    <a class="btn" href="vehicles/new">Add new vehicle</a>
 </div>
 <c:if test="${empty vehicleList}">
     <div class="empty">It's empty!</div>
