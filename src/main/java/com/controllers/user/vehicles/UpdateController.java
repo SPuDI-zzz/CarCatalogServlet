@@ -46,6 +46,7 @@ public class UpdateController extends HttpServlet {
                 .type(req.getParameter("type"))
                 .mileage(Integer.parseInt(req.getParameter("mileage")))
                 .price(Integer.parseInt(req.getParameter("price")))
+                .idProfile((Long) (req.getSession().getAttribute("idProfile")))
                 .build();
     }
 }
