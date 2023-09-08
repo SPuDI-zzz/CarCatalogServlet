@@ -1,13 +1,13 @@
 package com.filters;
 
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/user/*")
+@WebFilter("/user/*")
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
@@ -24,7 +24,7 @@ public class LoginFilter implements Filter {
             return;
         }
         HttpServletResponse httpServletResp = (HttpServletResponse) resp;
-        httpServletResp.sendRedirect("/login");
+        httpServletResp.sendRedirect(httpServletReq.getContextPath()+"/login");
     }
 
     @Override

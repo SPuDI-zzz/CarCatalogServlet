@@ -6,6 +6,6 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class ProfileDTO {
-    private Long id;
+    private long id;
     private String login;
 }
